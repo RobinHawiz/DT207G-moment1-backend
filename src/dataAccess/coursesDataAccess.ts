@@ -1,9 +1,9 @@
-import sql from "mssql";
-import { connectToDatabase } from "../config/db.js";
+import sql, { ConnectionPool } from "mssql";
 import { ICourses } from "../models/ICourses.js";
 
-export async function getAllCourses(): Promise<Array<ICourses>> {
-  const pool = await connectToDatabase();
+export async function getAllCourses(
+  pool: ConnectionPool
+): Promise<Array<ICourses>> {
   return new Promise((resolve, reject) => {
     new sql.Request(pool).execute<ICourses>(
       "spCourses_GetAll",
