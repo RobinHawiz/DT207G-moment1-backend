@@ -6,7 +6,7 @@ async function startServer() {
   const app: Express = await createApp();
 
   app.listen(APP_PORT, () => {
-    console.log(`Server running on port 3000`);
+    console.log(`Server running on port ${APP_PORT}`);
   });
 }
 
