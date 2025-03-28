@@ -1,0 +1,35 @@
+{
+  "name": "dt207g-moment1-backend",
+  "version": "1.0.0",
+  "description": "Business logic and API.",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "dev": "concurrently \"tsc -w\" \"nodemon dist/server.js\"",
+    "clean": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobinHawiz/DT207G-moment1-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/RobinHawiz/DT207G-moment1-backend/issues"
+  },
+  "homepage": "https://github.com/RobinHawiz/DT207G-moment1-backend#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/mssql": "^9.1.7",
+    "@types/node": "^22.13.14",
+    "concurrently": "^9.1.2",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mssql": "^11.0.1",
+    "nodemon": "^3.1.9",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.2"
+  }
+}
