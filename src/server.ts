@@ -1,12 +1,13 @@
-import app from "./app.js";
-import dotenv from "dotenv";
+import { createApp } from "./app.js";
+import { Express } from "express";
 
-// Load environment variables
-dotenv.config();
+async function startServer() {
+  const APP_PORT: number = Number(process.env.APP_PORT) || 3000;
+  const app: Express = await createApp();
 
-const APP_PORT: number = Number(process.env.APP_PORT) || 3000;
+  app.listen(APP_PORT, () => {
+    console.log(`Server running on port 3000`);
+  });
+}
 
-// Start server
-app.listen(APP_PORT, (): void => {
-  console.log(`Server is running on port ${APP_PORT}`);
-});
+startServer();
