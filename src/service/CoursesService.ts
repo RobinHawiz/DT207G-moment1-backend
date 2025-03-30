@@ -18,6 +18,10 @@ export class CoursesService {
   }
 
   async deleteCourses(req: Request) {
+    const courseExists: number = await dataAccess.checkCourses(this.pool, req);
+    if (!courseExists) {
+      throw new Error("Kursen med det Id't existerar inte!");
+    }
     return dataAccess.deleteCourses(this.pool, req);
   }
 }

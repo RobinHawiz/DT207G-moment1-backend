@@ -38,7 +38,7 @@ export async function deleteCourses(
     await courseService.deleteCourses(req);
     res.status(200).json({ message: "Course deleted successfully" });
   } catch (error: any) {
-    console.error("Error deleting courses data:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error("Error deleting course:", error);
+    res.status(404).json({ error: error.message });
   }
 }
