@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import { CoursesService } from "../service/CoursesService.js";
-import { getCourses } from "../controllers/coursesController.js";
+import { getCourses, insertCourses } from "../controllers/coursesController.js";
 import { ConnectionPool } from "mssql";
 
 export function coursesRoutes(pool: ConnectionPool) {
@@ -14,6 +14,10 @@ export function coursesRoutes(pool: ConnectionPool) {
       console.error("Error in GET /courses:", error);
       res.status(500).json({ error: "Internal Server Error" });
     }
+  });
+
+  router.post("/insert", async (req: Request, res: Response) => {
+    await insertCourses(req, res, courseService);
   });
 
   return router;

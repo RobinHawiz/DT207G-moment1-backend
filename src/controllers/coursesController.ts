@@ -14,3 +14,17 @@ export async function getCourses(
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
+
+export async function insertCourses(
+  req: Request,
+  res: Response,
+  courseService: CoursesService
+): Promise<void> {
+  try {
+    await courseService.insertCourses(req);
+    res.status(201).json({ message: "Course inserted successfully" });
+  } catch (error: any) {
+    console.error("Error inserting courses data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
