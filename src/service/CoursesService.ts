@@ -16,4 +16,8 @@ export class CoursesService {
   async insertCourses(req: Request) {
     return dataAccess.insertCourses(this.pool, req);
   }
+
+  async deleteCourses(req: Request) {
+    return dataAccess.deleteCourses(this.pool, req);
+  }
 }

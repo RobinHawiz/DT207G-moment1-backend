@@ -37,3 +37,20 @@ export async function insertCourses(
     throw error;
   }
 }
+
+export async function deleteCourses(
+  pool: ConnectionPool,
+  req: Request
+): Promise<void> {
+  try {
+    const { id }: { id: number } = req.body;
+    const request = new sql.Request(pool);
+
+    request.input("id", sql.Int, id);
+
+    await request.execute<ICourses>("spCourses_DeleteById");
+  } catch (error) {
+    console.error("Database deletion error:", error);
+    throw error;
+  }
+}

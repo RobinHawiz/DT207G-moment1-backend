@@ -32,3 +32,11 @@ export const coursesValidation: Array<ValidationChain> = [
     .matches(/["ABC"]/)
     .withMessage("Progression måste vara en stor bokstav: A, B eller C."),
 ];
+
+export const coursesIdValidation: Array<ValidationChain> = [
+  body("id")
+    .notEmpty()
+    .withMessage("Id't får inte vara tom.")
+    .isInt()
+    .withMessage("Id't måste vara en siffra."),
+];

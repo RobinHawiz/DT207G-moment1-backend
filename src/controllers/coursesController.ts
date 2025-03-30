@@ -28,3 +28,17 @@ export async function insertCourses(
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
+
+export async function deleteCourses(
+  req: Request,
+  res: Response,
+  courseService: CoursesService
+): Promise<void> {
+  try {
+    await courseService.deleteCourses(req);
+    res.status(200).json({ message: "Course deleted successfully" });
+  } catch (error: any) {
+    console.error("Error deleting courses data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
