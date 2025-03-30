@@ -23,7 +23,7 @@ export async function insertCourses(
   req: Request
 ): Promise<void> {
   try {
-    const { courseCode, courseName, syllabus, progression } = req.query;
+    const { courseCode, courseName, syllabus, progression } = req.body;
     const request = new sql.Request(pool);
 
     request.input("courseCode", sql.NVarChar, courseCode);
