@@ -12,7 +12,7 @@ import {
 } from "../middlewares/coursesValidation.js";
 import { validationResult } from "express-validator";
 
-export function coursesRoutes(pool: ConnectionPool) {
+export function coursesRoutes(pool: ConnectionPool): Router {
   const router: Router = Router();
   const courseService: CoursesService = new CoursesService(pool);
 
