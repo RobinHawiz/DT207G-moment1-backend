@@ -11,6 +11,7 @@ export async function createApp(): Promise<express.Express> {
   const pool: ConnectionPool = await connectToDatabase();
   const routes = coursesRoutes(pool);
 
+  app.use(express.json());
   app.use("/courses", routes);
 
   return app;
