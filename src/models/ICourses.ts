@@ -5,3 +5,6 @@ export interface ICourses {
   syllabus: string;
   progression: string;
 }
+
+// For POST requests (client → server)
+export type CoursePayload = Omit<ICourses, "id">;

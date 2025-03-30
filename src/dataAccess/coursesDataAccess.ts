@@ -1,5 +1,5 @@
 import sql, { ConnectionPool } from "mssql";
-import { ICourses } from "../models/ICourses.js";
+import { ICourses, CoursePayload } from "../models/ICourses.js";
 import { Request } from "express";
 
 export async function getAllCourses(
@@ -20,7 +20,7 @@ export async function getAllCourses(
 
 export async function insertCourses(
   pool: ConnectionPool,
-  req: Request
+  req: Request<unknown, unknown, CoursePayload>
 ): Promise<void> {
   try {
     const { courseCode, courseName, syllabus, progression } = req.body;
