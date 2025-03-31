@@ -9,7 +9,8 @@ import { Express } from "express";
  * and starts listening for incoming HTTP requests.
  */
 async function startServer() {
-  const APP_PORT: number = Number(process.env.APP_PORT) || 3000;
+  const APP_PORT: number =
+    Number(process.env.PORT || process.env.APP_PORT) || 3000;
   const app: Express = await createApp();
 
   app.listen(APP_PORT, () => {
