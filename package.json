@@ -2,9 +2,10 @@
   "name": "dt207g-moment1-backend",
   "version": "1.0.0",
   "description": "Business logic and API.",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
     "build": "rimraf dist && tsc",
+    "start": "node dist/server.js",
     "dev": "concurrently \"tsc -w\" \"nodemon dist/server.js\"",
     "clean": "rimraf dist"
   },
