@@ -2,6 +2,12 @@ import sql, { ConnectionPool } from "mssql";
 import { ICourses, CoursePayload } from "../models/ICourses.js";
 import { Request } from "express";
 
+/**
+ * Retrieves all courses from the database.
+ *
+ * @param pool - Active SQL Server connection pool
+ * @returns An array of course records
+ */
 export async function getAllCourses(
   pool: ConnectionPool
 ): Promise<Array<ICourses>> {
@@ -11,6 +17,13 @@ export async function getAllCourses(
   return result.recordset ?? [];
 }
 
+/**
+ * Inserts a new course into the database using values from the request body.
+ *
+ * @param pool - SQL Server connection pool
+ * @param req - Express Request object containing a validated CoursePayload in the body
+ * @throws If the database operation fails
+ */
 export async function insertCourses(
   pool: ConnectionPool,
   req: Request<unknown, unknown, CoursePayload>
@@ -31,6 +44,13 @@ export async function insertCourses(
   }
 }
 
+/**
+ * Deletes a course from the database based on the provided ID.
+ *
+ * @param pool - SQL Server connection pool
+ * @param req - Express Request object containing the ID in the body, which represents the course to delete
+ * @throws If the database operation fails
+ */
 export async function deleteCourses(
   pool: ConnectionPool,
   req: Request
@@ -48,6 +68,19 @@ export async function deleteCourses(
   }
 }
 
+/**
+ * Checks whether a course exists in the database based on the provided ID.
+ *
+ *
+ * The stored procedure is expected to return a single-row recordset in the form:
+ *   [{ '': 1 }] if the course exists
+ *   [{ '': 0 }] if it does not
+ *
+ * @param pool - SQL Server connection pool
+ * @param req - Express Request object containing the course ID in the body, which represents the course to check
+ * @returns 1 if the course exists, 0 otherwise
+ * @throws If the database operation fails
+ */
 export async function checkCourses(
   pool: ConnectionPool,
   req: Request
@@ -58,11 +91,11 @@ export async function checkCourses(
 
     request.input("id", sql.Int, id);
 
+    // result.recordset format: [{ '': number }]
     const result = await request.execute<ICourses>(
       "spCourses_CheckExistanceById"
     );
-    // result.recordset gives the following format: [{'':number}] where number is either 1 or 0. 1 = course exists, 0 = course does not exist.
-    return Object.values(result.recordset[0])[0]; // We do this to return the number only.
+    return Object.values(result.recordset[0])[0];
   } catch (error) {
     console.error("Database lookup error:", error);
     throw error;

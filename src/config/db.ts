@@ -1,4 +1,11 @@
 import sql from "mssql";
+
+/**
+ * SQL Server connection configuration.
+ *
+ * All values are read from environment variables. If not provided,
+ * fallback defaults are used where appropriate.
+ */
 const config: sql.config = {
   user: process.env.DB_USER || "",
   password: process.env.DB_PASSWORD || "",
@@ -6,6 +13,15 @@ const config: sql.config = {
   database: process.env.DB_NAME || "",
 };
 
+/**
+ * Establishes a connection pool to the SQL Server database.
+ *
+ * Uses environment variables for configuration, constructs the connection string manually,
+ * and throws on failure. Connection pooling is handled by the `mssql` library.
+ *
+ * @returns A connected SQL Server `ConnectionPool` instance
+ * @throws If the connection attempt fails
+ */
 export async function connectToDatabase(): Promise<sql.ConnectionPool> {
   try {
     const pool = await sql.connect(

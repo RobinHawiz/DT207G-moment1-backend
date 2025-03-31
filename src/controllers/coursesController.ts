@@ -1,6 +1,15 @@
 import { CoursesService } from "../service/CoursesService.js";
 import { Request, Response } from "express";
 
+/**
+ * Handles GET /courses
+ *
+ * Retrieves all course records and returns them in the response.
+ *
+ * @param _ - Unused Express Request object
+ * @param res - Express Response object
+ * @param courseService - Injected service for retrieving courses
+ */
 export async function getCourses(
   _: Request,
   res: Response,
@@ -15,6 +24,15 @@ export async function getCourses(
   }
 }
 
+/**
+ * Handles POST /courses/insert
+ *
+ * Inserts a new course using the request body and returns a success message.
+ *
+ * @param req - Express Request object (expected to contain validated course payload)
+ * @param res - Express Response object
+ * @param courseService - Injected service for inserting courses
+ */
 export async function insertCourses(
   req: Request,
   res: Response,
@@ -29,6 +47,15 @@ export async function insertCourses(
   }
 }
 
+/**
+ * Handles DELETE /courses/delete
+ *
+ * Deletes a course based on the request input and returns a success message.
+ *
+ * @param req - Express Request object (expected to contain validated course ID)
+ * @param res - Express Response object
+ * @param courseService - Injected service for deleting courses
+ */
 export async function deleteCourses(
   req: Request,
   res: Response,

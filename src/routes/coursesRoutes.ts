@@ -12,10 +12,24 @@ import {
 } from "../middlewares/coursesValidation.js";
 import { validationResult } from "express-validator";
 
+/**
+ * Factory function to create course-related API routes.
+ *
+ * - Injects a database connection pool into the route layer
+ * - Applies validation middleware where necessary
+ * - Delegates request handling to controller functions
+ *
+ * @param pool - Active SQL Server connection pool
+ * @returns Configured Express router for /courses endpoints
+ */
 export function coursesRoutes(pool: ConnectionPool): Router {
   const router: Router = Router();
   const courseService: CoursesService = new CoursesService(pool);
 
+  /**
+   * GET /courses
+   * Fetches all available courses.
+   */
   router.get("/", async (req: Request, res: Response) => {
     try {
       await getCourses(req, res, courseService);
@@ -25,6 +39,10 @@ export function coursesRoutes(pool: ConnectionPool): Router {
     }
   });
 
+  /**
+   * POST /courses/insert
+   * Inserts a new course after validating the request body.
+   */
   router.post(
     "/insert",
     coursesValidation,
@@ -38,6 +56,10 @@ export function coursesRoutes(pool: ConnectionPool): Router {
     }
   );
 
+  /**
+   * DELETE /courses/delete
+   * Deletes a course by ID after validating the input.
+   */
   router.delete(
     "/delete",
     coursesIdValidation,
