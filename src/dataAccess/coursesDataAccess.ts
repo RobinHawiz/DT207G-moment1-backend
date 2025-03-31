@@ -5,17 +5,10 @@ import { Request } from "express";
 export async function getAllCourses(
   pool: ConnectionPool
 ): Promise<Array<ICourses>> {
-  return new Promise((resolve, reject) => {
-    new sql.Request(pool).execute<ICourses>(
-      "spCourses_GetAll",
-      (err, result) => {
-        if (err) {
-          return reject(err);
-        }
-        resolve(result!.recordset as Array<ICourses>);
-      }
-    );
-  });
+  let result = await new sql.Request(pool).execute<ICourses>(
+    "spCourses_GetAll"
+  );
+  return result.recordset ?? [];
 }
 
 export async function insertCourses(
