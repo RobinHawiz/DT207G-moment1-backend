@@ -23,6 +23,11 @@ export async function createApp(): Promise<express.Express> {
   const routes = coursesRoutes(pool);
 
   app.use(express.json());
+  // Health check route
+  app.get("/health", (_, res) => {
+    res.status(200).send("OK");
+  });
+  // Mount course-related routes
   app.use("/courses", routes);
 
   return app;
