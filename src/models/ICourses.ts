@@ -3,7 +3,7 @@ export interface ICourses {
   courseCode: string;
   courseName: string;
   syllabus: string;
-  progression: string;
+  progression: "A" | "B" | "C";
 }
 
 // For POST requests (client → server)
