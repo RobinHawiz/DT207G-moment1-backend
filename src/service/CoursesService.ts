@@ -15,7 +15,7 @@ export class CoursesService {
   }
 
   async insertCourses(req: Request): Promise<void> {
-    return dataAccess.insertCourses(this.pool, req);
+    await dataAccess.insertCourses(this.pool, req);
   }
 
   async deleteCourses(req: Request): Promise<void> {
@@ -23,6 +23,6 @@ export class CoursesService {
     if (!courseExists) {
       throw new Error("Kursen med det Id't existerar inte!");
     }
-    return dataAccess.deleteCourses(this.pool, req);
+    await dataAccess.deleteCourses(this.pool, req);
   }
 }
