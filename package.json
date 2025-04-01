@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/RobinHawiz/DT207G-moment1-backend#readme",
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
     "@types/mssql": "^9.1.7",
     "@types/node": "^22.13.14",
