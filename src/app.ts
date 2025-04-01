@@ -5,6 +5,7 @@ import express, { Express } from "express";
 import { ConnectionPool } from "mssql";
 import { connectToDatabase } from "./config/db.js";
 import { coursesRoutes } from "./routes/coursesRoutes.js";
+import { corsMiddleware } from "./middlewares/corsMiddleware.js";
 
 /**
  * Initializes the Express application with all middleware and route handlers.
@@ -21,7 +22,8 @@ export async function createApp(): Promise<express.Express> {
   // Connect to db
   const pool: ConnectionPool = await connectToDatabase();
   const routes = coursesRoutes(pool);
-
+  // Middlewares
+  app.use(corsMiddleware);
   app.use(express.json());
   // Health check route
   app.get("/health", (_, res) => {
