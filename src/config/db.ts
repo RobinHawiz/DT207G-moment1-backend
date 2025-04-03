@@ -25,7 +25,7 @@ const config: sql.config = {
 export async function connectToDatabase(): Promise<sql.ConnectionPool> {
   try {
     const pool = await sql.connect(
-      `Server=${config.server};Database=${config.database};User Id=${config.user};Password=${config.password};Encrypt=true`
+      `Server=${config.server};Database=${config.database};User Id=${config.user};Password=${config.password};Encrypt=true;TrustServerCertificate=true`
     );
     return pool;
   } catch (err) {

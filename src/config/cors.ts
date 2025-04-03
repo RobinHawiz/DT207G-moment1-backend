@@ -1,3 +1,3 @@
 export const corsOptions = {
-  origin: "https://robinhawiz.github.io",
+  origin: process.env.CORS_ORIGIN,
 };
