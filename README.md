@@ -50,6 +50,22 @@ Deployed on **Azure App Service**
 
 ---
 
+## 📊 Entity Relationship Diagram
+
+The database consists of a single `Courses` table, structured as follows:
+
+![ER Diagram](./docs/er-diagram.png)
+
+| Column       | Type         | Description              |
+|--------------|--------------|--------------------------|
+| `Id`         | `INT`        | Primary key (auto-increment) |
+| `CourseCode` | `NVARCHAR(6)`| Unique course identifier |
+| `CourseName` | `NVARCHAR(50)`| Name of the course      |
+| `Syllabus`   | `NVARCHAR(2083)`| URL to syllabus       |
+| `Progression`| `CHAR(1)`    | Progression level (A/B/C) |
+
+---
+
 ## 📡 API Endpoints
 
 ### `GET /courses`
@@ -115,33 +131,76 @@ Request body example:
 
 ## 🧪 Running Locally
 
-### 1. Clone the repo
+### 🧰 Prerequisites
+
+- [Node.js](https://nodejs.org/)
+- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+- [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) to run the setup script
+- Git
+
+---
+
+### 🔧 Step 1: Clone the project
 ```bash
 git clone https://github.com/RobinHawiz/DT207G-moment1-backend.git
 ```
-### 2. Navigate to the cloned repo folder
 ```bash
 cd DT207G-moment1-backend
 ```
-### 3. Create .env file
-Copy this structure into a .env file at the root:
-```bash
-DB_USER=your_sql_user
-DB_PASSWORD=your_sql_password
-DB_HOST=your_sql_host
-DB_NAME=your_database_name
-APP_PORT=4000
-```
-### 4. Install dependencies
+
+---
+
+### 📦 Step 2: Install dependencies
 ```bash
 npm install
 ```
-### 5. Build the project
-```bash
-npm run build
+
+---
+
+### 🧬 Step 3: Configure environment variables
+```env
+DB_USER=local
+DB_PASSWORD=local
+DB_NAME=cvdb
+DB_HOST=YOUR_SERVER_NAME
+
+APP_PORT=4000
+
+CORS_ORIGIN=http://localhost:5173
 ```
-### 6. Start the server
+⚠️ Make sure DB_USER and DB_PASSWORD match the credentials created in the SQL script.
+This script creates a login/user local with password local and grants full access to the database.
+
+💡 You can find your SQL Server name in SSMS under Server Name when connecting.
+
+---
+
+### 🏗️ Step 4: Set up the database via SSMS
+
+- Open SQL Server Management Studio (SSMS)
+
+- Connect to your local SQL Server instance
+
+- Open the db/setup.sql file from this project
+
+- Execute the script
+
+---
+
+### 🚀 Step 5: Run the backend server
+
 ```bash
-npm start
+npm run dev
 ```
 Now your server will be live at http://localhost:4000
+
+---
+
+### 🚨 Having Trouble Connecting to the Database?
+
+If your backend fails to connect to the SQL Server it’s likely due to SQL Server not being configured for SQL Server Authentication. SQL Server must be set to Mixed Mode Authentication (SQL + Windows) in order for user accounts like local to work.
+
+✅ Watch this helpful tutorial to fix it:
+
+📺 [How to Enable SQL Server Authentication (YouTube)](https://www.youtube.com/watch?v=uDS6c6DZyY4&t=397s&ab_channel=CodeandLogicMaker)
+
