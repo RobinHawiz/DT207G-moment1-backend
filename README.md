@@ -196,7 +196,7 @@ Now your server will be live at http://localhost:4000
 
 ---
 
-### 🚨 Having Trouble Connecting to the Database?
+## 🚨 Having Trouble Connecting to the Database?
 
 If your backend fails to connect to the SQL Server it’s likely due to SQL Server not being configured for SQL Server Authentication. SQL Server must be set to Mixed Mode Authentication (SQL + Windows) in order for user accounts like local to work.
 
