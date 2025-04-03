@@ -16,7 +16,7 @@ My solution, although very modular, is quite simple.
 
 ├── app.ts            → App setup: middleware, routes, DB connection
 
-├── config/           → env & DB configuration
+├── config/           → env & cors & DB configuration
 
 ├── models/           → Shared interfaces and type aliases (e.g. ICourses)
 
